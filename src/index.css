@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0c0a0a;
+  --color-primary-light: #161212;
+  --color-secondary: #cc2c2f;
+  --color-secondary-dark: #a4292a;
+  --color-secondary-deep: #7a1f21;
+  --color-accent: #d6ae0d;
+  --color-accent-light: #f3b563;
+  --color-brown: #513129;
+  --color-cream: #ffebeb;
+  --color-support: #ffffff;
+  --color-support-muted: #cfc5c5;
+  --color-support-dark: #8a7f7f;
+
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-primary text-support font-sans antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-wide;
+  }
+
+  ::selection {
+    @apply bg-secondary text-white;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-accent-light;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-secondary text-white px-7 py-3.5 font-bold uppercase tracking-wider text-sm transition-all hover:bg-secondary-dark hover:scale-[1.03] shadow-[0_8px_24px_rgba(204,44,47,0.35)];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-7 py-3.5 font-bold uppercase tracking-wider text-sm transition-all hover:border-accent hover:text-accent;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28 px-4;
+  }
+
+  .shape-fill {
+    fill: currentColor;
+  }
+}
+
+/* bounce arrow like Adelmario */
+@keyframes bounce-arrow {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-12px); }
+  60% { transform: translateY(-6px); }
+}
+
+.arrow-bounce {
+  animation: bounce-arrow 2s infinite;
+}
+
+/* counter number pulse */
+@keyframes count-glow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 24px rgba(214, 174, 13, 0.45); }
+}
+
+.count-glow {
+  animation: count-glow 2.5s ease-in-out infinite;
+}
