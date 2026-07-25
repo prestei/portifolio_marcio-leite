@@ -32,17 +32,17 @@ export function TrajetoriaSection() {
         style={{ height: `${TRAJETORIA.length * VH_PER_STEP}vh` }}
       >
         <div className="sticky top-0 h-svh max-h-svh overflow-hidden flex flex-col">
-          <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-16 lg:pt-20 pb-2 shrink-0 relative z-10">
+          <div className="max-w-[90rem] mx-auto w-full px-4 md:px-8 pt-16 lg:pt-20 pb-2 shrink-0 relative z-10">
             <SectionTitle title="Trajetória" subtitle="Linha do Tempo" compact />
             <p className="text-center text-support-muted max-w-2xl mx-auto -mt-4 mb-1 text-sm md:text-base">
               Role para percorrer dezoito anos de estrada — da feira livre da Chapada aos palcos da Micareta.
             </p>
           </div>
 
-          <div className="flex-1 min-h-0 max-w-7xl mx-auto w-full px-4 md:px-8 pb-5 lg:pb-8 relative z-10">
+          <div className="flex-1 min-h-0 max-w-[90rem] mx-auto w-full px-4 md:px-8 pb-5 lg:pb-8 relative z-10">
             {/* Tablet: timeline above image. Desktop: side-by-side. */}
-            <div className="flex flex-col lg:grid lg:grid-cols-[minmax(14rem,0.9fr)_minmax(0,1.3fr)] gap-4 lg:gap-12 xl:gap-16 h-full min-h-0">
-              <div className="shrink-0 lg:min-h-0 lg:h-full lg:shrink max-h-[34%] lg:max-h-none overflow-hidden">
+            <div className="flex flex-col lg:grid lg:grid-cols-[minmax(12rem,0.55fr)_minmax(0,1.8fr)] gap-4 lg:gap-10 xl:gap-12 h-full min-h-0">
+              <div className="shrink-0 lg:min-h-0 lg:h-full lg:shrink max-h-[28%] lg:max-h-none overflow-hidden">
                 <TrajetoriaTimeline items={TRAJETORIA} activeIndex={activeIndex} progress={progress} />
               </div>
               <div className="flex-1 min-h-0 lg:h-full">
@@ -68,13 +68,13 @@ export function TrajetoriaSection() {
                 <span className="font-display text-accent text-2xl tracking-wide">{item.year}</span>
               </div>
               <h3 className="font-semibold text-support text-lg mb-3">{item.title}</h3>
-              <div className="relative overflow-hidden rounded-2xl bg-[#0a0808] shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-accent/15 aspect-[3/4] max-h-[70vh]">
+              <div className="relative overflow-hidden rounded-2xl bg-[#0a0808] shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-accent/15 aspect-[3/4] max-h-[78vh]">
                 {hasTrajetoriaImage(item) ? (
                   <>
                     <img
                       src={asset(item.image)}
                       alt=""
-                      className="absolute inset-0 w-full h-full object-contain object-center"
+                      className="absolute inset-0 w-full h-full object-cover object-center"
                       loading={i === 0 ? 'eager' : 'lazy'}
                       decoding="async"
                     />

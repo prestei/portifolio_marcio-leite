@@ -3,8 +3,12 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
-  // Project site: https://prestei.github.io/portifolio_marcio-leite/
-  base: mode === 'production' ? '/portifolio_marcio-leite/' : '/',
+export default defineConfig({
+  // Custom domain (CNAME) + GitHub Pages from /docs on main
+  base: '/',
   plugins: [react(), tailwindcss()],
-}))
+  build: {
+    outDir: 'docs',
+    emptyOutDir: true,
+  },
+})

@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy": "npm run build && touch dist/.nojekyll && npx --yes gh-pages@6 -d dist -t true"
+    "deploy": "npm run build && touch docs/.nojekyll && cp CNAME docs/CNAME"
   },
   "dependencies": {
     "clsx": "^2.1.1",

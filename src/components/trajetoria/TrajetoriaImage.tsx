@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { TrajetoriaItem } from '../../data/site';
 import { hasTrajetoriaImage } from '../../data/site';
@@ -12,67 +11,11 @@ interface TrajetoriaImageProps {
   fillViewport?: boolean;
 }
 
-type FitMode = 'contain' | 'cover';
-
 const SWAP = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
-
-/**
- * Prefer contain (full image, no stretch).
- * Fall back to cover only when contain would leave the photo too small in the frame.
- */
-function pickFit(imgW: number, imgH: number, boxW: number, boxH: number): FitMode {
-  if (imgW <= 0 || imgH <= 0 || boxW <= 0 || boxH <= 0) return 'contain';
-  const scale = Math.min(boxW / imgW, boxH / imgH);
-  const shownArea = imgW * scale * (imgH * scale);
-  const boxArea = boxW * boxH;
-  if (shownArea / boxArea < 0.42) return 'cover';
-  return 'contain';
-}
 
 export function TrajetoriaImage({ items, activeIndex, fillViewport = false }: TrajetoriaImageProps) {
   const active = items[activeIndex] ?? items[0];
   const showImage = hasTrajetoriaImage(active);
-  const frameRef = useRef<HTMLDivElement>(null);
-  const [fits, setFits] = useState<Record<string, FitMode>>({});
-
-  useEffect(() => {
-    const frame = frameRef.current;
-    if (!frame) return;
-
-    const measure = () => {
-      const boxW = frame.clientWidth;
-      const boxH = frame.clientHeight;
-      if (boxW <= 0 || boxH <= 0) return;
-
-      setFits((prev) => {
-        const next = { ...prev };
-        let changed = false;
-        for (const item of items) {
-          if (!hasTrajetoriaImage(item)) continue;
-          const img = frame.querySelector<HTMLImageElement>(`img[data-src="${item.image}"]`);
-          if (!img?.naturalWidth) continue;
-          const mode = pickFit(img.naturalWidth, img.naturalHeight, boxW, boxH);
-          if (next[item.image] !== mode) {
-            next[item.image] = mode;
-            changed = true;
-          }
-        }
-        return changed ? next : prev;
-      });
-    };
-
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(frame);
-    return () => ro.disconnect();
-  }, [items]);
-
-  const onImgLoad = (imageKey: string, img: HTMLImageElement) => {
-    const frame = frameRef.current;
-    if (!frame) return;
-    const mode = pickFit(img.naturalWidth, img.naturalHeight, frame.clientWidth, frame.clientHeight);
-    setFits((prev) => (prev[imageKey] === mode ? prev : { ...prev, [imageKey]: mode }));
-  };
 
   return (
     <div
@@ -82,7 +25,6 @@ export function TrajetoriaImage({ items, activeIndex, fillViewport = false }: Tr
       `}
     >
       <div
-        ref={frameRef}
         className="
           absolute inset-0 overflow-hidden rounded-2xl
           bg-[#0a0808]
@@ -93,11 +35,9 @@ export function TrajetoriaImage({ items, activeIndex, fillViewport = false }: Tr
         {items.map((item, i) => {
           if (!hasTrajetoriaImage(item)) return null;
           const isActive = showImage && i === activeIndex;
-          const fit = fits[item.image] ?? 'contain';
           return (
             <motion.img
               key={item.image}
-              data-src={item.image}
               src={asset(item.image)}
               alt=""
               aria-hidden={!isActive}
@@ -107,12 +47,7 @@ export function TrajetoriaImage({ items, activeIndex, fillViewport = false }: Tr
                 scale: isActive ? 1.04 : 1,
               }}
               transition={SWAP}
-              onLoad={(e) => onImgLoad(item.image, e.currentTarget)}
-              className={`
-                absolute inset-0 w-full h-full pointer-events-none
-                object-center
-                ${fit === 'cover' ? 'object-cover' : 'object-contain'}
-              `}
+              className="absolute inset-0 w-full h-full pointer-events-none object-cover object-center"
               loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
             />
