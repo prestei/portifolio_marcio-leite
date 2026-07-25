@@ -35,10 +35,10 @@ export function GallerySection() {
                   loading="lazy"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all translate-y-3 group-hover:translate-y-0">
-                <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase">{photo.cat}</span>
-                <p className="text-support font-medium">{photo.title}</p>
+                <span className="text-accent-light text-xs font-bold tracking-[0.2em] uppercase">{photo.cat}</span>
+                <p className="text-white font-medium">{photo.title}</p>
               </div>
             </motion.button>
           ))}
@@ -71,7 +71,7 @@ export function GallerySection() {
               className="max-h-[88vh] max-w-full object-contain"
               onClick={(e) => e.stopPropagation()}
             />
-            <p className="absolute bottom-8 left-0 right-0 text-center text-support-muted">
+            <p className="absolute bottom-8 left-0 right-0 text-center text-white/70">
               {GALLERY[active].title}
             </p>
           </motion.div>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaPlay, FaYoutube, FaInstagram, FaFacebookF, FaMusic } from 'react-icons/fa';
+import { FaPlay, FaYoutube, FaInstagram, FaFacebookF, FaMusic, FaSpotify } from 'react-icons/fa';
 import { SectionTitle } from '../ui/SectionTitle';
 import { ALBUMS, PLATFORMS } from '../../data/site';
 import { asset } from '../../utils/asset';
@@ -9,6 +9,7 @@ const ICONS = {
   instagram: FaInstagram,
   facebook: FaFacebookF,
   music: FaMusic,
+  spotify: FaSpotify,
 } as const;
 
 export function MusicSection() {
@@ -30,7 +31,7 @@ export function MusicSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
-              className="group relative aspect-[4/5] overflow-hidden bg-primary-light border border-white/5"
+              className="group relative aspect-[4/5] overflow-hidden bg-primary-light border border-black/8 card-lift shadow-[0_10px_30px_rgba(26,20,20,0.06)]"
             >
               <img
                 src={asset(album.image)}
@@ -38,16 +39,16 @@ export function MusicSection() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-night via-night/55 to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(204,44,47,0.5)]">
-                  <FaPlay className="text-xl" />
+                <span className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(200,16,46,0.5)]">
+                  <FaPlay className="text-xl text-white" />
                 </span>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-                <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase">{album.year}</span>
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-10 text-white">
+                <span className="text-accent-light text-xs font-bold tracking-[0.2em] uppercase">{album.year}</span>
                 <h3 className="font-display text-2xl tracking-wide mt-1 leading-tight">{album.title}</h3>
-                <p className="text-sm text-support-muted mt-2 leading-relaxed">{album.desc}</p>
+                <p className="text-sm text-white/70 mt-2 leading-relaxed">{album.desc}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
                   <a
                     href="https://www.youtube.com/@marcioleiteofficial"
@@ -61,7 +62,7 @@ export function MusicSection() {
                     href="https://www.suamusica.com.br/marcioleiteoficials"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[10px] tracking-wider uppercase px-3 py-1.5 bg-white/10 hover:bg-accent hover:text-primary transition-colors"
+                    className="text-[10px] tracking-wider uppercase px-3 py-1.5 bg-white/10 hover:bg-accent-light hover:text-night transition-colors"
                   >
                     Sua Música
                   </a>
@@ -72,7 +73,7 @@ export function MusicSection() {
         </div>
 
         {/* Platforms block — Adelmario "ESCOLHA UMA PLATAFORMA" */}
-        <div className="border-t border-white/10 pt-14 text-center">
+        <div className="border-t border-black/8 pt-14 text-center">
           <h3 className="font-display text-3xl md:text-5xl tracking-[0.08em] mb-3">
             ESCOLHA UMA <span className="text-secondary">PLATAFORMA DIGITAL</span>
           </h3>
@@ -85,14 +86,14 @@ export function MusicSection() {
                   key={p.name}
                   href={p.href}
                   target="_blank"
-                  rel="noreferrer"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="flex items-center gap-3 px-6 py-4 bg-primary-light border border-white/10 hover:border-secondary hover:bg-secondary/10 transition-all min-w-[160px] justify-center"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 16, scale: 0.96 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex items-center gap-3 px-6 py-4 bg-primary-light border border-black/10 hover:border-secondary hover:bg-secondary/5 card-lift min-w-[160px] justify-center group"
                 >
-                  <Icon className="text-2xl text-accent" />
+                  <Icon className="text-2xl text-accent social-icon" />
                   <span className="font-bold text-sm tracking-wide">{p.name}</span>
                 </motion.a>
               );

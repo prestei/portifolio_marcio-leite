@@ -15,7 +15,7 @@ export function PressSection() {
             viewport={{ once: true }}
           >
             <h3 className="font-display text-3xl tracking-wide mb-6 text-accent">O Que Falam</h3>
-            <blockquote className="bg-primary border-l-4 border-secondary p-6 md:p-8 mb-8">
+            <blockquote className="bg-white border-l-4 border-secondary p-6 md:p-8 mb-8 shadow-[0_8px_28px_rgba(26,20,20,0.05)]">
               <p className="text-lg md:text-xl leading-relaxed text-support/90 italic">“{TESTIMONIAL.quote}”</p>
               <footer className="mt-4 text-sm">
                 <span className="text-accent font-bold">{TESTIMONIAL.author}</span>
@@ -45,7 +45,7 @@ export function PressSection() {
               {PRESS.map((p) => (
                 <div
                   key={p.source}
-                  className="bg-primary border border-white/8 p-5 hover:border-accent/40 transition-colors"
+                  className="bg-white border border-black/8 p-5 hover:border-accent/40 transition-colors shadow-[0_6px_20px_rgba(26,20,20,0.04)]"
                 >
                   <p className="font-display text-xl tracking-wide text-support mb-2">{p.source}</p>
                   <p className="text-sm text-support-muted leading-relaxed">{p.text}</p>

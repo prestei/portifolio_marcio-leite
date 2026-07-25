@@ -12,9 +12,10 @@ export function AboutSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -48 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
             <div className="relative aspect-[3/4] overflow-hidden border-4 border-accent/40">
@@ -23,8 +24,8 @@ export function AboutSection() {
                 alt="Márcio Leite"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
-              <p className="absolute bottom-6 left-6 font-script text-accent text-4xl md:text-5xl drop-shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent" />
+              <p className="absolute bottom-6 left-6 font-script text-accent-light text-4xl md:text-5xl drop-shadow-lg">
                 Márcio Leite
               </p>
             </div>
@@ -32,9 +33,10 @@ export function AboutSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-6"
           >
             <h3 className="font-display text-3xl md:text-4xl tracking-wide text-support leading-tight">
@@ -66,7 +68,7 @@ export function AboutSection() {
               {['Arrocha', 'Forró', 'Romântico', 'Voz Cigana', 'Bahia'].map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-1.5 border border-white/15 text-xs tracking-[0.2em] uppercase text-support-muted"
+                  className="px-4 py-1.5 border border-black/12 text-xs tracking-[0.2em] uppercase text-support-muted"
                 >
                   {tag}
                 </span>

@@ -45,9 +45,10 @@ export function ContactSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-6"
           >
             <h3 className="font-display text-3xl md:text-4xl tracking-wide">
@@ -63,7 +64,7 @@ export function ContactSection() {
                   rel="noreferrer"
                   className="flex items-center gap-4 group"
                 >
-                  <span className="w-12 h-12 rounded-full bg-primary-light border border-white/10 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/15 transition-colors">
+                  <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
                     <FaWhatsapp className="text-accent text-xl" />
                   </span>
                   <div>
@@ -75,7 +76,7 @@ export function ContactSection() {
 
               {SITE.emails.map((email) => (
                 <a key={email} href={`mailto:${email}`} className="flex items-center gap-4 group">
-                  <span className="w-12 h-12 rounded-full bg-primary-light border border-white/10 flex items-center justify-center group-hover:border-accent transition-colors">
+                  <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center group-hover:border-accent transition-colors">
                     <FaEnvelope className="text-accent" />
                   </span>
                   <div>
@@ -86,7 +87,7 @@ export function ContactSection() {
               ))}
 
               <div className="flex items-start gap-4">
-                <span className="w-12 h-12 rounded-full bg-primary-light border border-white/10 flex items-center justify-center shrink-0">
+                <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center shrink-0">
                   <FaMapMarkerAlt className="text-accent" />
                 </span>
                 <div>
@@ -100,7 +101,7 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-center gap-4">
-                <span className="w-12 h-12 rounded-full bg-primary-light border border-white/10 flex items-center justify-center">
+                <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center">
                   <FaPhone className="text-accent" />
                 </span>
                 <div>
@@ -113,10 +114,11 @@ export function ContactSection() {
 
           <motion.form
             onSubmit={onSubmit}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-primary-light border border-white/10 p-6 md:p-8 space-y-5"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-primary-light border border-black/8 p-6 md:p-8 space-y-5 card-lift shadow-[0_12px_36px_rgba(26,20,20,0.06)]"
           >
             <h4 className="font-display text-2xl tracking-wide mb-2">Orçamento rápido</h4>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -134,7 +136,7 @@ export function ContactSection() {
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-primary border border-white/10 px-4 py-3 text-support focus:outline-none focus:border-secondary transition-colors resize-none"
+                className="w-full bg-white border border-black/10 px-4 py-3 text-support focus:outline-none focus:border-secondary transition-colors resize-none"
                 placeholder="Tipo de evento, horário, observações..."
               />
             </div>
@@ -169,7 +171,7 @@ function Field({
         required={required}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-primary border border-white/10 px-4 py-3 text-support focus:outline-none focus:border-secondary transition-colors"
+        className="w-full bg-white border border-black/10 px-4 py-3 text-support focus:outline-none focus:border-secondary transition-colors"
       />
     </div>
   );

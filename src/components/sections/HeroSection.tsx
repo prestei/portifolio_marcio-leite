@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaBookOpen, FaHeadphones, FaWhatsapp } from 'react-icons/fa';
+import { FaBookOpen, FaWhatsapp } from 'react-icons/fa';
 import { SITE } from '../../data/site';
 import { asset } from '../../utils/asset';
 
@@ -7,18 +7,23 @@ export function HeroSection() {
   const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Olá! Quero contratar o show do Márcio Leite.')}`;
 
   return (
-    <section className="relative min-h-screen flex items-end md:items-center overflow-hidden bg-primary">
+    <section className="relative min-h-screen flex items-end md:items-center overflow-hidden bg-night text-white">
       {/* Full-bleed hero photo — Adelmario style */}
-      <div className="absolute inset-0">
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0, scale: 1.08 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      >
         <img
           src={asset('images/extracted/img-01.jpg')}
           alt="Márcio Leite no palco"
           className="w-full h-full object-cover object-[center_20%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-primary/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(12,10,10,0.45)_100%)]" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-night/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(15,12,12,0.45)_100%)]" />
+      </motion.div>
 
       {/* Triangle divider bottom like Adelmario */}
       <div className="absolute bottom-0 left-0 right-0 text-primary-light z-20 leading-none">
@@ -32,7 +37,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="font-script text-accent text-3xl md:text-5xl mb-2"
+          className="font-script text-accent-light text-3xl md:text-5xl mb-2"
         >
           {SITE.tagline}
         </motion.p>
@@ -52,7 +57,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.45, duration: 0.8 }}
-          className="mt-6 max-w-xl text-support-muted text-base md:text-lg leading-relaxed"
+          className="mt-6 max-w-xl text-white/75 text-base md:text-lg leading-relaxed"
         >
           {SITE.subheadline}
         </motion.p>
@@ -61,15 +66,17 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4"
+          className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 max-w-xl"
         >
-          <a href="#discografia" className="btn-primary">
-            <FaHeadphones /> Ouvir agora
+          <a href="#trajetoria" className="btn-outline flex-1 min-w-[13.5rem] justify-center">
+            <FaBookOpen /> Conhecer História
           </a>
-          <a href="#sobre" className="btn-outline">
-            <FaBookOpen /> Conhecer história
-          </a>
-          <a href={wa} target="_blank" rel="noreferrer" className="btn-primary !bg-accent !text-primary hover:!bg-accent-light shadow-[0_8px_24px_rgba(214,174,13,0.35)]">
+          <a
+            href={wa}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary !bg-accent-light !text-night hover:!bg-accent shadow-[0_8px_24px_rgba(201,162,39,0.4)] flex-1 min-w-[13.5rem] justify-center"
+          >
             <FaWhatsapp /> Contratar Show
           </a>
         </motion.div>
@@ -78,7 +85,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="mt-8 text-xs tracking-[0.3em] uppercase text-support-dark"
+          className="mt-8 text-xs tracking-[0.3em] uppercase text-white/50"
         >
           {SITE.base}
         </motion.p>

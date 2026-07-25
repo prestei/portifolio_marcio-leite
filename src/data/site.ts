@@ -18,6 +18,8 @@ export const SITE = {
     youtube: 'https://www.youtube.com/@marcioleiteofficial',
     facebook: 'https://www.facebook.com/marcioleiteofficial',
     suamusica: 'https://www.suamusica.com.br/marcioleiteoficials',
+    // TODO: substituir pelo link oficial do Spotify do artista quando disponível
+    spotify: 'https://open.spotify.com/search/M%C3%A1rcio%20Leite',
   },
 };
 
@@ -45,48 +47,101 @@ export const RECOGNITIONS = [
   'Mapeamento Cultural de Santo Estevão - BA',
 ];
 
-export const TRAJETORIA = [
+export type TrajetoriaItem = {
+  year: string;
+  title: string;
+  desc: string;
+  /** Portrait photo path. When null/empty, the info panel is shown instead. */
+  image: string | null;
+  /** Longer copy for the info panel; falls back to `desc` when omitted. */
+  infoText?: string;
+  /** Optional highlight quote shown on the info panel. */
+  highlight?: string;
+};
+
+/** Portrait assets for the sticky Trajetória storytelling experience. */
+export const TRAJETORIA: TrajetoriaItem[] = [
   {
     year: '2007',
     title: 'Os primeiros acordes',
-    desc: 'Início da trajetória na música, integrando bandas e construindo sua identidade musical — vendendo CDs em festivais e feiras livres da Chapada Diamantina.',
+    desc: 'Início da carreira musical, passando por várias bandas até a decisão de seguir como artista solo — vendendo CDs em festivais e feiras livres da Chapada Diamantina.',
+    image: null,
+    infoText:
+      'Início da carreira musical, passando por várias bandas até a decisão de seguir como artista solo — vendendo CDs em festivais e feiras livres da Chapada Diamantina.',
+    highlight: 'Toda grande trajetória começa com o primeiro acorde.',
   },
   {
     year: '2008',
     title: 'Cantor Destaque',
-    desc: 'Conquistou o prêmio de Cantor Destaque em Santo Estevão - BA através de votação popular.',
+    desc: 'Recebe em Santo Estevão-BA o certificado "Cantor Destaque", do prêmio Empresas e Profissionais de Sucesso, reconhecendo o trabalho pela opinião popular.',
+    image: 'images/trajetoria/cantor-destaque.jpg',
   },
   {
-    year: '2013–2014',
-    title: 'A vitrine de Feira',
-    desc: 'Lançamento do CD Vol. 06 e grande apresentação no projeto Quinta na Praça da TV Subaé (afiliada TV Globo).',
+    year: '2013–2015',
+    title: 'A vitrine de Feira de Santana',
+    desc: 'Sobe ao palco no São João de Santo Estevão e se torna destaque fixo do projeto "Quinta na Praça" da TV Subaé, animando o Jardim Cruzeiro com arrocha e pagode de mesa.',
+    image: 'images/trajetoria/vitrine-feira.jpg',
   },
   {
-    year: '2017–2018',
-    title: 'A Voz Cigana em turnê',
-    desc: 'Matéria especial na Chapada Diamantina, gravação do DVD A Voz Cigana na Cavalgada e turnê por Riacho de Santana, Ipirá e Santo Estevão.',
+    year: '2017',
+    title: 'De camelô a cantor de arrocha',
+    desc: 'Matéria de jornal registra a virada de chave: de camelô em Barra da Estiva e outras cidades da Chapada, Márcio Leite se dedica em tempo integral à carreira musical e lança novo álbum.',
+    image: 'images/trajetoria/camelo-arrocha.jpg',
+  },
+  {
+    year: '2018',
+    title: 'Um ano em movimento',
+    desc: 'Shows ao vivo em Riacho de Santana, na Cavalgada da Caatinguinha (Santo Estevão), lançamento do DVD "A Voz Cigana" em São Roque de Ipirá e apresentação no São Pedro de Humildes, além do Projeto Beneficente Quinta na Praça.',
+    image: 'images/trajetoria/ano-movimento.jpg',
   },
   {
     year: '2019',
-    title: 'Estreia na Micareta',
-    desc: 'Estreia consagrada na Micareta de Feira de Santana e lançamento do CD Vol. 10.',
+    title: 'Estreia na Micareta de Feira',
+    desc: '"Tenho mil motivos para agradecer" — Márcio Leite estreia na Micareta de Feira de Santana, abrilhantando a tarde de domingo e lançando o CD volume 10. Quem nunca cantou na Micareta, não é batizado.',
+    image: 'images/trajetoria/micareta-2019.jpg',
   },
   {
-    year: '2020–2022',
-    title: 'Cultura, lives e retomada',
-    desc: 'Mapeamento Cultural Oficial, lives beneficentes, Réveillon de Santa Teresinha e São Pedro do Serrote em Ipecaetá.',
+    year: '2020',
+    title: 'Certificado Cultural & lives beneficentes',
+    desc: 'Márcio de Oliveira Leite é cadastrado no Mapeamento Cultural de Santo Estevão. Durante a pandemia, realiza uma série de lives beneficentes para manter viva a conexão com o público.',
+    image: 'images/trajetoria/certificado-cultural.jpg',
+  },
+  {
+    year: '2020–2021',
+    title: 'Réveillon & Festa de Reis',
+    desc: 'Show de virada de ano em Santa Teresinha-BA e Festa de Reis no Distrito de Tiquaruçu, em Feira de Santana — celebrações que marcam a retomada gradual dos palcos.',
+    image: null,
+    infoText:
+      'Show de virada de ano em Santa Teresinha-BA e Festa de Reis no Distrito de Tiquaruçu, em Feira de Santana — celebrações que marcam a retomada gradual dos palcos.',
+    highlight: 'A música manteve viva a conexão com o público.',
+  },
+  {
+    year: '2022',
+    title: 'Repertório novo, "Vem se Apaixonar"',
+    desc: 'Lançamento do repertório novo e apresentação no São Pedro do Serrote, em Ipecaetá-BA — "hoje, após dois anos de pandemia, está sendo concretizado", celebrou o artista.',
+    image: null,
+    infoText:
+      'Lançamento do repertório novo e apresentação no São Pedro do Serrote, em Ipecaetá-BA — após dois anos de pandemia, o retorno aos palcos se concretiza.',
+    highlight: 'Hoje, após dois anos de pandemia, está sendo concretizado.',
   },
   {
     year: '2023',
-    title: 'Marca & ao vivo',
-    desc: 'Show principal no Trio Porradão na Micareta de Feira, gravação do CD Ao Vivo e registro de marca oficial no INPI.',
+    title: 'Marca registrada & ao vivo',
+    desc: 'A marca "Márcio Leite" é oficialmente registrada no INPI. No mesmo ano, dois CDs são gravados ao vivo: em Ipecaetá-BA e na Micareta de Feira de Santana, além da Festa de Reis em Ipecaetá.',
+    image: 'images/trajetoria/micareta-2023.jpg',
   },
   {
     year: 'Hoje',
     title: 'Carreira solo consolidada',
     desc: 'Gravação do Audiovisual no Hangar 5.0 com convidados especiais e agenda aberta para todo o Brasil.',
+    image: 'images/trajetoria/carreira-atual.jpg',
   },
 ];
+
+/** True when the marco has a usable image path. */
+export function hasTrajetoriaImage(item: TrajetoriaItem): item is TrajetoriaItem & { image: string } {
+  return typeof item.image === 'string' && item.image.trim().length > 0;
+}
 
 export const ALBUMS = [
   {
@@ -166,19 +221,11 @@ export const TESTIMONIAL = {
   role: 'Prefeitura de Ipecaetá - BA',
 };
 
-export const AGENDA = [
-  {
-    day: '—',
-    month: 'EM BREVE',
-    title: 'Agenda em atualização',
-    place: 'Bahia e todo o Brasil',
-    link: '#contato',
-  },
-];
-
 export const PLATFORMS = [
   { name: 'YouTube', href: 'https://www.youtube.com/@marcioleiteofficial', icon: 'youtube' },
   { name: 'Instagram', href: 'https://www.instagram.com/marcioleiteofficial/', icon: 'instagram' },
   { name: 'Facebook', href: 'https://www.facebook.com/marcioleiteofficial', icon: 'facebook' },
   { name: 'Sua Música', href: 'https://www.suamusica.com.br/marcioleiteoficials', icon: 'music' },
+  // TODO: substituir SITE.socials.spotify pelo link oficial do artista no Spotify
+  { name: 'Spotify', href: SITE.socials.spotify, icon: 'spotify' },
 ];

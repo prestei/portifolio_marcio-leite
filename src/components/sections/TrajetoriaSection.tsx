@@ -1,63 +1,97 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
 import { SectionTitle } from '../ui/SectionTitle';
-import { TRAJETORIA } from '../../data/site';
+import { TRAJETORIA, hasTrajetoriaImage } from '../../data/site';
+import { TrajetoriaTimeline } from '../trajetoria/TrajetoriaTimeline';
+import { TrajetoriaImage } from '../trajetoria/TrajetoriaImage';
+import { TrajetoriaInfoPanel } from '../trajetoria/TrajetoriaInfoPanel';
+import { useStickyTimeline } from '../../hooks/useStickyTimeline';
+import { asset } from '../../utils/asset';
+
+/** Viewport-heights of scroll runway per marco (desktop/tablet sticky). */
+const VH_PER_STEP = 85;
 
 export function TrajetoriaSection() {
-  return (
-    <section id="trajetoria" className="section-pad bg-primary-light relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
-        <SectionTitle title="Trajetória" subtitle="Linha do Tempo" />
-        <p className="text-center text-support-muted max-w-2xl mx-auto mb-14 -mt-6">
-          Dezoito anos de estrada — da feira livre da Chapada aos palcos da Micareta de Feira de Santana.
-        </p>
+  const runwayRef = useRef<HTMLDivElement>(null);
+  const { activeIndex, progress } = useStickyTimeline(runwayRef, TRAJETORIA.length);
 
-        {/* Horizontal scroll timeline on desktop-ish, stacked on mobile */}
-        <div className="hidden md:block overflow-x-auto pb-4 -mx-4 px-4">
-          <div className="relative min-w-[1100px] px-4">
-            <div className="absolute top-8 left-0 right-0 h-[3px] bg-gradient-to-r from-secondary via-accent to-secondary" />
-            <div className="flex gap-6">
-              {TRAJETORIA.map((item, i) => (
-                <motion.div
-                  key={item.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="relative flex-1 min-w-[200px] pt-16"
-                >
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-[3px] border-accent shadow-[0_0_16px_rgba(214,174,13,0.6)]" />
-                  <div className="bg-primary border border-white/8 p-5 h-full hover:border-secondary/50 transition-colors">
-                    <span className="font-display text-2xl text-accent">{item.year}</span>
-                    <h4 className="font-bold text-support mt-2 mb-2 leading-snug">{item.title}</h4>
-                    <p className="text-sm text-support-muted leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+  return (
+    <section id="trajetoria" className="bg-primary relative">
+      <div
+        className="pointer-events-none absolute -top-32 right-0 w-[28rem] h-[28rem] rounded-full bg-secondary/8 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 w-[22rem] h-[22rem] rounded-full bg-accent/8 blur-3xl"
+        aria-hidden="true"
+      />
+
+      {/* ── Desktop / Tablet: sticky scroll storytelling ── */}
+      <div
+        ref={runwayRef}
+        className="hidden md:block relative"
+        style={{ height: `${TRAJETORIA.length * VH_PER_STEP}vh` }}
+      >
+        <div className="sticky top-0 h-svh max-h-svh overflow-hidden flex flex-col">
+          <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-16 lg:pt-20 pb-2 shrink-0 relative z-10">
+            <SectionTitle title="Trajetória" subtitle="Linha do Tempo" compact />
+            <p className="text-center text-support-muted max-w-2xl mx-auto -mt-4 mb-1 text-sm md:text-base">
+              Role para percorrer dezoito anos de estrada — da feira livre da Chapada aos palcos da Micareta.
+            </p>
+          </div>
+
+          <div className="flex-1 min-h-0 max-w-7xl mx-auto w-full px-4 md:px-8 pb-5 lg:pb-8 relative z-10">
+            {/* Tablet: timeline above image. Desktop: side-by-side. */}
+            <div className="flex flex-col lg:grid lg:grid-cols-[minmax(14rem,0.9fr)_minmax(0,1.3fr)] gap-4 lg:gap-12 xl:gap-16 h-full min-h-0">
+              <div className="shrink-0 lg:min-h-0 lg:h-full lg:shrink max-h-[34%] lg:max-h-none overflow-hidden">
+                <TrajetoriaTimeline items={TRAJETORIA} activeIndex={activeIndex} progress={progress} />
+              </div>
+              <div className="flex-1 min-h-0 lg:h-full">
+                <TrajetoriaImage items={TRAJETORIA} activeIndex={activeIndex} fillViewport />
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Mobile vertical */}
-        <div className="md:hidden relative pl-8 space-y-8">
-          <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-secondary/40" />
+      {/* ── Mobile: natural scroll, one marco at a time ── */}
+      <div className="md:hidden section-pad relative z-10">
+        <SectionTitle title="Trajetória" subtitle="Linha do Tempo" />
+        <p className="text-center text-support-muted max-w-2xl mx-auto mb-10 -mt-6 text-sm">
+          Dezoito anos de estrada — da feira livre da Chapada aos palcos da Micareta de Feira de Santana.
+        </p>
+
+        <ol className="space-y-14">
           {TRAJETORIA.map((item, i) => (
-            <motion.div
-              key={item.year}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="relative"
-            >
-              <div className="absolute -left-[1.4rem] top-2 w-3.5 h-3.5 rounded-full bg-accent border-2 border-primary" />
-              <div className="bg-primary border border-white/8 p-5">
-                <span className="font-display text-xl text-accent">{item.year}</span>
-                <h4 className="font-bold mt-1 mb-2">{item.title}</h4>
-                <p className="text-sm text-support-muted leading-relaxed">{item.desc}</p>
+            <li key={item.year} className="relative">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_12px_rgba(166,124,0,0.45)]" />
+                <span className="font-display text-accent text-2xl tracking-wide">{item.year}</span>
               </div>
-            </motion.div>
+              <h3 className="font-semibold text-support text-lg mb-3">{item.title}</h3>
+              <div className="relative overflow-hidden rounded-2xl bg-[#0a0808] shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-accent/15 aspect-[3/4] max-h-[70vh]">
+                {hasTrajetoriaImage(item) ? (
+                  <>
+                    <img
+                      src={asset(item.image)}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-contain object-center"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <div className="rounded-xl border border-accent/35 bg-black/45 backdrop-blur-xl px-4 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+                        <p className="text-sm text-white/75 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <TrajetoriaInfoPanel item={item} />
+                )}
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
