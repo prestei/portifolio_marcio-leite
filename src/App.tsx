@@ -3,12 +3,25 @@ import { BrowserRouter } from 'react-router-dom';
 import { MusicPlayer } from './components/MusicPlayer';
 import { AppRoutes } from './routes';
 
-const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
+/** Vite base, or `/docs` when the build is opened under Live Server at /docs/. */
+function resolveBasename(): string | undefined {
+  const raw = import.meta.env.BASE_URL
+  if (raw !== './' && raw !== '/') {
+    return raw.replace(/\/$/, '') || undefined
+  }
+  if (typeof window !== 'undefined') {
+    const { pathname } = window.location
+    if (pathname === '/docs' || pathname.startsWith('/docs/')) {
+      return '/docs'
+    }
+  }
+  return undefined
+}
 
 function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter basename={basename}>
+      <BrowserRouter basename={resolveBasename()}>
         <MusicPlayer />
         <AppRoutes />
       </BrowserRouter>
