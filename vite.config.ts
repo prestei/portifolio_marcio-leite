@@ -4,9 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Relative base so assets resolve under /docs when previewing via Live Server,
-  // and still work on GitHub Pages + custom domain (docs published at site root).
-  base: './',
+  // Custom domain (CNAME) serves the site at the domain root via GitHub Pages /docs.
+  // Absolute base keeps JS/CSS/image URLs stable (./ breaks without a trailing slash).
+  base: '/',
   plugins: [react(), tailwindcss()],
   build: {
     outDir: 'docs',
