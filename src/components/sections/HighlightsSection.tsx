@@ -53,7 +53,7 @@ export function HighlightsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="bg-white border border-black/8 p-6 md:p-8 text-center shadow-[0_8px_28px_rgba(26,20,20,0.04)] hover:border-secondary/35 transition-colors"
+              className="bg-surface border border-[var(--border-gold)] p-6 md:p-8 text-center shadow-[var(--shadow-soft)] hover:border-accent/40 transition-colors"
             >
               <Counter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
               <p className="mt-3 text-sm text-support-muted leading-snug">{stat.label}</p>

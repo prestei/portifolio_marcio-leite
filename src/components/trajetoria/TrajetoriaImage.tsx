@@ -28,8 +28,8 @@ export function TrajetoriaImage({ items, activeIndex, fillViewport = false }: Tr
         className="
           absolute inset-0 overflow-hidden rounded-2xl
           bg-[#0a0808]
-          shadow-[0_24px_60px_rgba(0,0,0,0.55)]
-          ring-1 ring-accent/15
+          ring-1 ring-[var(--border-gold)]
+          shadow-[var(--shadow-hover)]
         "
       >
         {items.map((item, i) => {
@@ -89,7 +89,7 @@ export function TrajetoriaImage({ items, activeIndex, fillViewport = false }: Tr
                     border border-accent/35
                     bg-black/45 backdrop-blur-xl
                     px-4 py-3.5 sm:px-5 sm:py-4
-                    shadow-[0_12px_40px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)]
+                    shadow-[0_12px_40px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)]
                   "
                 >
                   <p className="font-display text-accent-light text-xl sm:text-2xl tracking-wide">{active.year}</p>

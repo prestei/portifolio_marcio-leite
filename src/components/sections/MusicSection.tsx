@@ -1,21 +1,14 @@
 import { motion } from 'framer-motion';
-import { FaPlay, FaYoutube, FaInstagram, FaFacebookF, FaMusic, FaSpotify } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 import { SectionTitle } from '../ui/SectionTitle';
+import { StreamingLink } from '../ui/StreamingLink';
 import { ALBUMS, PLATFORMS } from '../../data/site';
 import { asset } from '../../utils/asset';
-
-const ICONS = {
-  youtube: FaYoutube,
-  instagram: FaInstagram,
-  facebook: FaFacebookF,
-  music: FaMusic,
-  spotify: FaSpotify,
-} as const;
 
 export function MusicSection() {
   return (
     <section id="discografia" className="section-pad bg-primary relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <SectionTitle title="Discografia" subtitle="O Catálogo Musical" />
@@ -31,7 +24,7 @@ export function MusicSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
-              className="group relative aspect-[4/5] overflow-hidden bg-primary-light border border-black/8 card-lift shadow-[0_10px_30px_rgba(26,20,20,0.06)]"
+              className="group relative aspect-[4/5] overflow-hidden bg-surface border border-[var(--border-gold)] card-lift shadow-[var(--shadow-soft)]"
             >
               <img
                 src={asset(album.image)}
@@ -41,7 +34,7 @@ export function MusicSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-night via-night/55 to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(200,16,46,0.5)]">
+                <span className="w-16 h-16 rounded-full bg-accent flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(179,138,69,0.45)]">
                   <FaPlay className="text-xl text-white" />
                 </span>
               </div>
@@ -54,7 +47,7 @@ export function MusicSection() {
                     href="https://www.youtube.com/@marcioleiteofficial"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[10px] tracking-wider uppercase px-3 py-1.5 bg-white/10 hover:bg-secondary transition-colors"
+                    className="text-[10px] tracking-wider uppercase px-3 py-1.5 bg-white/10 hover:bg-accent transition-colors"
                   >
                     YouTube
                   </a>
@@ -72,32 +65,15 @@ export function MusicSection() {
           ))}
         </div>
 
-        {/* Platforms block — Adelmario "ESCOLHA UMA PLATAFORMA" */}
-        <div className="border-t border-black/8 pt-14 text-center">
+        <div className="border-t border-[var(--border-gold)] pt-14 text-center">
           <h3 className="font-display text-3xl md:text-5xl tracking-[0.08em] mb-3">
-            ESCOLHA UMA <span className="text-secondary">PLATAFORMA DIGITAL</span>
+            ESCOLHA UMA <span className="text-accent">PLATAFORMA DIGITAL</span>
           </h3>
           <p className="text-support-muted mb-10">Ouça e acompanhe Márcio Leite nas redes oficiais</p>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            {PLATFORMS.map((p, i) => {
-              const Icon = ICONS[p.icon as keyof typeof ICONS] ?? FaMusic;
-              return (
-                <motion.a
-                  key={p.name}
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 16, scale: 0.96 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center gap-3 px-6 py-4 bg-primary-light border border-black/10 hover:border-secondary hover:bg-secondary/5 card-lift min-w-[160px] justify-center group"
-                >
-                  <Icon className="text-2xl text-accent social-icon" />
-                  <span className="font-bold text-sm tracking-wide">{p.name}</span>
-                </motion.a>
-              );
-            })}
+          <div className="flex flex-wrap justify-center items-start gap-5 sm:gap-6 md:gap-8">
+            {PLATFORMS.map((p) => (
+              <StreamingLink key={p.name} name={p.name} href={p.href} icon={p.icon} labeled />
+            ))}
           </div>
         </div>
       </div>

@@ -26,8 +26,8 @@ export function TrajetoriaTimeline({ items, activeIndex, progress = 0 }: Trajeto
       <div
         className="
           absolute left-[5px] md:left-[7px] z-10
-          w-3.5 h-3.5 rounded-full bg-accent border-2 border-white
-          shadow-[0_0_16px_rgba(166,124,0,0.55)]
+          w-3.5 h-3.5 rounded-full bg-accent border-2 border-primary
+          shadow-[0_0_14px_rgba(184,138,59,0.4)]
           transition-[top] duration-300 ease-out
           -translate-y-1/2
         "

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import { SectionTitle } from '../ui/SectionTitle';
 import { SITE } from '../../data/site';
 
@@ -49,66 +49,42 @@ export function ContactSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
+            className="flex flex-col justify-center gap-8 lg:min-h-[28rem]"
           >
             <h3 className="font-display text-3xl md:text-4xl tracking-wide">
               Fale com a <span className="text-secondary">produção</span>
             </h3>
 
-            <div className="space-y-5">
-              {SITE.phones.map((phone) => (
-                <a
-                  key={phone}
-                  href={`https://wa.me/55${phone.replace(/\D/g, '')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-4 group"
-                >
-                  <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
-                    <FaWhatsapp className="text-accent text-xl" />
-                  </span>
-                  <div>
-                    <span className="block text-xs tracking-wider uppercase text-support-dark">WhatsApp</span>
-                    <span className="text-lg font-bold group-hover:text-accent transition-colors">{phone}</span>
-                  </div>
-                </a>
-              ))}
-
-              {SITE.emails.map((email) => (
-                <a key={email} href={`mailto:${email}`} className="flex items-center gap-4 group">
-                  <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center group-hover:border-accent transition-colors">
-                    <FaEnvelope className="text-accent" />
-                  </span>
-                  <div>
-                    <span className="block text-xs tracking-wider uppercase text-support-dark">E-mail</span>
-                    <span className="text-sm md:text-base break-all group-hover:text-accent transition-colors">{email}</span>
-                  </div>
-                </a>
-              ))}
-
-              <div className="flex items-start gap-4">
-                <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center shrink-0">
-                  <FaMapMarkerAlt className="text-accent" />
+            <div className="flex flex-col gap-5">
+              <a
+                href="https://wa.me/5575981136855"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-4 group w-fit max-w-full"
+              >
+                <span className="w-12 h-12 rounded-full bg-surface border border-[var(--border-gold)] flex items-center justify-center shrink-0 group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
+                  <FaWhatsapp className="text-accent text-xl" />
                 </span>
-                <div>
-                  <span className="block text-xs tracking-wider uppercase text-support-dark">Escritório</span>
-                  <span className="text-support/90 text-sm leading-relaxed">
-                    {SITE.company}
-                    <br />
-                    {SITE.address}
+                <div className="min-w-0">
+                  <span className="block text-xs tracking-wider uppercase text-support-dark">WhatsApp</span>
+                  <span className="text-lg font-bold group-hover:text-accent transition-colors">(75) 98113-6855</span>
+                </div>
+              </a>
+
+              <a
+                href="mailto:marcioleitesimplesmenteromantico@hotmail.com"
+                className="flex items-center gap-4 group w-fit max-w-full"
+              >
+                <span className="w-12 h-12 rounded-full bg-surface border border-[var(--border-gold)] flex items-center justify-center shrink-0 group-hover:border-accent transition-colors">
+                  <FaEnvelope className="text-accent" />
+                </span>
+                <div className="min-w-0">
+                  <span className="block text-xs tracking-wider uppercase text-support-dark">E-mail</span>
+                  <span className="text-sm md:text-base break-all group-hover:text-accent transition-colors">
+                    marcioleitesimplesmenteromantico@hotmail.com
                   </span>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <span className="w-12 h-12 rounded-full bg-primary-light border border-black/10 flex items-center justify-center">
-                  <FaPhone className="text-accent" />
-                </span>
-                <div>
-                  <span className="block text-xs tracking-wider uppercase text-support-dark">Atendimento</span>
-                  <span className="text-support/90 text-sm">Comercial · Produção · Contratações</span>
-                </div>
-              </div>
+              </a>
             </div>
           </motion.div>
 
@@ -118,7 +94,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-primary-light border border-black/8 p-6 md:p-8 space-y-5 card-lift shadow-[0_12px_36px_rgba(26,20,20,0.06)]"
+            className="bg-surface border border-[var(--border-gold)] p-6 md:p-8 space-y-5 card-lift shadow-[var(--shadow-soft)]"
           >
             <h4 className="font-display text-2xl tracking-wide mb-2">Orçamento rápido</h4>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -136,7 +112,7 @@ export function ContactSection() {
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-white border border-black/10 px-4 py-3 text-support focus:outline-none focus:border-secondary transition-colors resize-none"
+                className="w-full bg-surface border border-[var(--border-gold)] px-4 py-3 text-support focus:outline-none focus:border-accent transition-colors resize-none"
                 placeholder="Tipo de evento, horário, observações..."
               />
             </div>
@@ -171,7 +147,7 @@ function Field({
         required={required}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-white border border-black/10 px-4 py-3 text-support focus:outline-none focus:border-secondary transition-colors"
+        className="w-full bg-surface border border-[var(--border-gold)] px-4 py-3 text-support focus:outline-none focus:border-accent transition-colors"
       />
     </div>
   );

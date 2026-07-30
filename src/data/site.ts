@@ -180,9 +180,6 @@ export const GALLERY = [
   { src: 'images/extracted/img-01.jpg', title: 'Show ao vivo', cat: 'Shows' },
   { src: 'images/gallery/show-01.jpg', title: 'Quinta na Praça · TV Subaé', cat: 'Público' },
   { src: 'images/gallery/show-02.jpg', title: 'Praça lotada', cat: 'Público' },
-  { src: 'images/extracted/img-07.jpg', title: 'Micareta 2019', cat: 'Trio Elétrico' },
-  { src: 'images/gallery/micareta1.jpg', title: 'Micareta de Feira', cat: 'Trio Elétrico' },
-  { src: 'images/gallery/micareta2.jpg', title: 'Trio Porradão · 2023', cat: 'Shows' },
   { src: 'images/about/retrato.jpg', title: 'Retrato · Vem se Apaixonar', cat: 'Estúdio' },
   { src: 'images/extracted/img-12.jpg', title: 'Hangar 5.0', cat: 'Bastidores' },
 ];
@@ -221,6 +218,22 @@ export const TESTIMONIAL = {
   role: 'Prefeitura de Ipecaetá - BA',
 };
 
+/** Social-proof slides for the testimonials carousel (real quotes only). */
+export const TESTIMONIALS = [
+  {
+    quote: TESTIMONIAL.quote,
+    author: TESTIMONIAL.author,
+    role: TESTIMONIAL.role,
+    kind: 'depoimento' as const,
+  },
+  ...PRESS.map((p) => ({
+    quote: p.text,
+    author: p.source,
+    role: 'Imprensa',
+    kind: 'imprensa' as const,
+  })),
+];
+
 export const PLATFORMS = [
   { name: 'YouTube', href: 'https://www.youtube.com/@marcioleiteofficial', icon: 'youtube' },
   { name: 'Instagram', href: 'https://www.instagram.com/marcioleiteofficial/', icon: 'instagram' },
@@ -228,4 +241,19 @@ export const PLATFORMS = [
   { name: 'Sua Música', href: 'https://www.suamusica.com.br/marcioleiteoficials', icon: 'music' },
   // TODO: substituir SITE.socials.spotify pelo link oficial do artista no Spotify
   { name: 'Spotify', href: SITE.socials.spotify, icon: 'spotify' },
+];
+
+/** Floating site player playlist (extendable). */
+export type PlaylistTrack = {
+  src: string;
+  title: string;
+  artist?: string;
+};
+
+export const PLAYLIST: PlaylistTrack[] = [
+  {
+    src: 'audio/se-nao-for-por-amor.mp3',
+    title: 'Se Não For Por Amor',
+    artist: SITE.name,
+  },
 ];

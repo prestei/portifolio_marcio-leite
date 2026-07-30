@@ -26,7 +26,7 @@ export function TrajetoriaInfoPanel({ item, className = '' }: TrajetoriaInfoPane
     >
       {/* Soft gold ambient glow */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(214,174,13,0.12),transparent_55%),radial-gradient(ellipse_at_80%_90%,rgba(204,44,47,0.08),transparent_50%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(212,176,106,0.14),transparent_55%),radial-gradient(ellipse_at_80%_90%,rgba(122,91,42,0.1),transparent_50%)]"
         aria-hidden="true"
       />
 

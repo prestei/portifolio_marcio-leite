@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaCalendarPlus, FaClock } from 'react-icons/fa';
+import { motion, useReducedMotion } from 'framer-motion';
+import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { CalendarDays } from 'lucide-react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { SITE } from '../../data/site';
 import { asset } from '../../utils/asset';
@@ -15,6 +16,7 @@ export function AgendaSection() {
   const [shows, setShows] = useState<CalendarShow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     let cancelled = false;
@@ -59,20 +61,30 @@ export function AgendaSection() {
       <div className="absolute inset-0 bg-primary/85" />
 
       <div className="max-w-5xl mx-auto relative z-10">
-        <div className="flex items-center justify-center gap-4 mb-2">
-          <div className="w-12 h-12 rounded-full bg-secondary/20 border border-secondary/40 flex items-center justify-center">
-            <FaCalendarPlus className="text-accent" />
-          </div>
-        </div>
+        <motion.div
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center justify-center gap-3 mb-3"
+        >
+          <span
+            className="
+              inline-flex items-center justify-center
+              w-11 h-11 rounded-full
+              border border-[var(--border-gold)] bg-surface
+              text-accent shadow-[var(--shadow-soft)]
+            "
+            aria-hidden="true"
+          >
+            <CalendarDays className="w-5 h-5" strokeWidth={1.6} />
+          </span>
+        </motion.div>
         <SectionTitle title="Próximos Shows" subtitle="Agenda" />
 
-        {loading && (
-          <p className="text-center text-support-muted py-10">Carregando agenda…</p>
-        )}
+        {loading && <p className="text-center text-support-muted py-10">Carregando agenda…</p>}
 
-        {!loading && error && (
-          <p className="text-center text-support-muted py-6">{error}</p>
-        )}
+        {!loading && error && <p className="text-center text-support-muted py-6">{error}</p>}
 
         {!loading && !error && shows.length === 0 && (
           <p className="text-center text-support-muted text-lg py-10 max-w-xl mx-auto">
@@ -89,13 +101,13 @@ export function AgendaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.07, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="grid grid-cols-1 sm:grid-cols-[110px_1fr] border border-black/10 overflow-hidden card-lift shadow-[0_8px_28px_rgba(26,20,20,0.06)]"
+                className="grid grid-cols-1 sm:grid-cols-[110px_1fr] border border-[var(--border-gold)] overflow-hidden card-lift shadow-[var(--shadow-soft)]"
               >
-                <div className="bg-secondary text-white flex flex-col items-center justify-center py-6 sm:py-8 px-4 text-center">
+                <div className="bg-accent text-white flex flex-col items-center justify-center py-6 sm:py-8 px-4 text-center">
                   <span className="font-display text-4xl md:text-5xl leading-none">{show.day}</span>
                   <span className="font-display text-xl tracking-wider mt-1">{show.month}</span>
                 </div>
-                <div className="bg-primary-light/90 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="bg-surface/95 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div>
                     <h3 className="font-display text-2xl md:text-3xl tracking-wide">{show.title}</h3>
                     <p className="text-accent text-sm font-bold tracking-wider uppercase mt-2">{show.city}</p>

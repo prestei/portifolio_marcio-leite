@@ -4,32 +4,27 @@ import { asset } from '../../utils/asset';
 
 export function AboutSection() {
   return (
-    <section id="sobre" className="relative section-pad bg-primary overflow-hidden">
-      <div className="absolute -right-32 top-20 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+    <section id="sobre" className="relative section-pad-about bg-primary px-4">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -right-32 top-20 w-96 h-96 bg-secondary/10 rounded-full blur-[100px]" />
+      </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto">
         <SectionTitle title="Sobre o Artista" subtitle="Biografia" />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-center">
           <motion.div
             initial={{ opacity: 0, x: -48 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
           >
-            <div className="relative aspect-[3/4] overflow-hidden border-4 border-accent/40">
+            <div className="about-image-wrapper">
               <img
                 src={asset('images/about/retrato.jpg')}
-                alt="Márcio Leite"
-                className="w-full h-full object-cover"
+                alt="Márcio Leite com microfone"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent" />
-              <p className="absolute bottom-6 left-6 font-script text-accent-light text-4xl md:text-5xl drop-shadow-lg">
-                Márcio Leite
-              </p>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-secondary/30 -z-10 translate-x-3 translate-y-3" />
           </motion.div>
 
           <motion.div

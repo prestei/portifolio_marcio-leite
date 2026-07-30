@@ -51,10 +51,10 @@ export function SectionTitle({
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className={`w-20 h-1 ${compact ? 'mt-3' : 'mt-6'} ${
+          className={`w-20 h-[2px] rounded-full ${compact ? 'mt-3' : 'mt-6'} ${
             light
-              ? 'bg-gradient-to-r from-secondary via-accent-light to-secondary'
-              : 'bg-gradient-to-r from-secondary via-accent to-secondary'
+              ? 'bg-gradient-to-r from-transparent via-accent-light to-transparent'
+              : 'bg-gradient-to-r from-transparent via-accent to-transparent'
           }`}
         />
       )}

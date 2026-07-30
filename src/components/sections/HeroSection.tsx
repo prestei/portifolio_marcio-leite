@@ -75,7 +75,7 @@ export function HeroSection() {
             href={wa}
             target="_blank"
             rel="noreferrer"
-            className="btn-primary !bg-accent-light !text-night hover:!bg-accent shadow-[0_8px_24px_rgba(201,162,39,0.4)] flex-1 min-w-[13.5rem] justify-center"
+            className="btn-primary !bg-accent-light !text-night hover:!bg-accent shadow-[0_8px_24px_rgba(179,138,69,0.32)] flex-1 min-w-[13.5rem] justify-center"
           >
             <FaWhatsapp /> Contratar Show
           </a>
