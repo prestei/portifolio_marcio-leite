@@ -28,3 +28,6 @@ dist-ssr
 
 # Raw media dump (HEIC/MOV/WhatsApp) — not for deploy
 public/images/novo/
+
+raw-media-novo/
+docs/images/novo/
