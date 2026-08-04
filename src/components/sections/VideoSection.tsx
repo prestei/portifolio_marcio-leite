@@ -4,7 +4,7 @@ import { FaPlay } from 'react-icons/fa';
 import { SectionTitle } from '../ui/SectionTitle';
 import { asset } from '../../utils/asset';
 
-const IMPACT_VIDEO_ID = 'dGORY0W6aD8';
+const IMPACT_VIDEO_ID = 'AjT83Q7yn4M';
 const IMPACT_VIDEO_URL = `https://www.youtube.com/watch?v=${IMPACT_VIDEO_ID}`;
 
 export function VideoSection() {
@@ -59,9 +59,9 @@ export function VideoSection() {
                 aria-label="Reproduzir vídeo institucional"
               >
                 <img
-                  src={asset('images/hero/cartaz.jpg')}
-                  alt="Gravação Audiovisual Hangar 5.0"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  src={asset('images/hero/audiovisual-capa.jpg')}
+                  alt="Márcio Leite — vídeo oficial"
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-night/45 to-night/25" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white px-4">
@@ -79,7 +79,7 @@ export function VideoSection() {
                   <span className="font-display text-xl md:text-2xl tracking-[0.18em] text-center">
                     ASSISTIR AGORA
                   </span>
-                  <span className="text-xs tracking-[0.2em] uppercase text-white/60">YouTube · Hangar 5.0</span>
+                  <span className="text-xs tracking-[0.2em] uppercase text-white/60">YouTube · Oficial</span>
                 </div>
               </button>
             )}

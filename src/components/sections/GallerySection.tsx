@@ -7,14 +7,8 @@ import { asset } from '../../utils/asset';
 
 type GalleryPhoto = (typeof GALLERY)[number];
 
-/** Editorial width rhythm — consistent height, varied widths. */
-const ITEM_SIZE_CLASS = [
-  'gallery-item--a',
-  'gallery-item--b',
-  'gallery-item--c',
-  'gallery-item--b',
-  'gallery-item--a',
-] as const;
+/** Original gallery had 5 photos; keep the same px/s when the set grows. */
+const GALLERY_BASE_COUNT = 5;
 
 function GalleryItems({
   photos,
@@ -34,7 +28,7 @@ function GalleryItems({
           key={`${idPrefix}-${photo.src}-${index}`}
           type="button"
           tabIndex={inert ? -1 : 0}
-          className={`gallery-item ${ITEM_SIZE_CLASS[index % ITEM_SIZE_CLASS.length]}`}
+          className="gallery-item"
           onClick={() => onSelect?.(index)}
           aria-label={inert ? undefined : `Ampliar foto: ${photo.title} (${photo.cat})`}
         >
@@ -128,7 +122,8 @@ export function GallerySection() {
       return;
     }
 
-    const cycleMs = window.matchMedia('(max-width: 640px)').matches ? 55_000 : 42_000;
+    const baseCycleMs = window.matchMedia('(max-width: 640px)').matches ? 55_000 : 42_000;
+    const cycleMs = baseCycleMs * (GALLERY.length / GALLERY_BASE_COUNT);
 
     const tick = (ts: number) => {
       if (!lastTsRef.current) lastTsRef.current = ts;

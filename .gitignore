@@ -25,3 +25,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw media dump (HEIC/MOV/WhatsApp) — not for deploy
+public/images/novo/

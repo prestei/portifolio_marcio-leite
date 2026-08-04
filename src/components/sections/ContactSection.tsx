@@ -56,20 +56,23 @@ export function ContactSection() {
             </h3>
 
             <div className="flex flex-col gap-5">
-              <a
-                href="https://wa.me/5575981136855"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-4 group w-fit max-w-full"
-              >
-                <span className="w-12 h-12 rounded-full bg-surface border border-[var(--border-gold)] flex items-center justify-center shrink-0 group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
-                  <FaWhatsapp className="text-accent text-xl" />
-                </span>
-                <div className="min-w-0">
-                  <span className="block text-xs tracking-wider uppercase text-support-dark">WhatsApp</span>
-                  <span className="text-lg font-bold group-hover:text-accent transition-colors">(75) 98113-6855</span>
-                </div>
-              </a>
+              {SITE.whatsapps.map((wa) => (
+                <a
+                  key={wa.number}
+                  href={`https://wa.me/${wa.number}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-4 group w-fit max-w-full"
+                >
+                  <span className="w-12 h-12 rounded-full bg-surface border border-[var(--border-gold)] flex items-center justify-center shrink-0 group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
+                    <FaWhatsapp className="text-accent text-xl" />
+                  </span>
+                  <div className="min-w-0">
+                    <span className="block text-xs tracking-wider uppercase text-support-dark">WhatsApp</span>
+                    <span className="text-lg font-bold group-hover:text-accent transition-colors">{wa.display}</span>
+                  </div>
+                </a>
+              ))}
 
               <a
                 href="mailto:marcioleitesimplesmenteromantico@hotmail.com"

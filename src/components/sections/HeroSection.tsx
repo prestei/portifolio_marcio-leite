@@ -1,31 +1,61 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FaBookOpen, FaWhatsapp } from 'react-icons/fa';
 import { SITE } from '../../data/site';
 import { asset } from '../../utils/asset';
 
+const HERO_SLIDES = [
+  {
+    src: 'images/extracted/img-01.jpg',
+    alt: 'Márcio Leite no palco',
+    // Rosto no terço superior — mobile e desktop
+    position: 'object-[center_12%] md:object-[center_18%]',
+  },
+  {
+    src: 'images/hero/palco-gesto.jpg',
+    alt: 'Márcio Leite cantando no palco',
+    // Retrato: rosto um pouco à esquerda e no topo no mobile
+    position: 'object-[42%_8%] md:object-[center_15%]',
+  },
+] as const;
+
+const SLIDE_MS = 6500;
+
 export function HeroSection() {
   const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Olá! Quero contratar o show do Márcio Leite.')}`;
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setActive((i) => (i + 1) % HERO_SLIDES.length);
+    }, SLIDE_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-end md:items-center overflow-hidden bg-night text-white">
-      {/* Full-bleed hero photo — Adelmario style */}
-      <motion.div
-        className="absolute inset-0"
-        initial={{ opacity: 0, scale: 1.08 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <img
-          src={asset('images/extracted/img-01.jpg')}
-          alt="Márcio Leite no palco"
-          className="w-full h-full object-cover object-[center_20%]"
-        />
+      <div className="absolute inset-0">
+        <AnimatePresence mode="sync" initial={false}>
+          {HERO_SLIDES.map((slide, i) =>
+            i === active ? (
+              <motion.img
+                key={slide.src}
+                src={asset(slide.src)}
+                alt={slide.alt}
+                initial={{ opacity: 0, scale: 1.06 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                className={`absolute inset-0 w-full h-full object-cover ${slide.position}`}
+              />
+            ) : null,
+          )}
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-night/80 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(15,12,12,0.45)_100%)]" />
-      </motion.div>
+      </div>
 
-      {/* Triangle divider bottom like Adelmario */}
       <div className="absolute bottom-0 left-0 right-0 text-primary-light z-20 leading-none">
         <svg viewBox="0 0 1000 100" preserveAspectRatio="none" className="w-full h-12 md:h-16 block">
           <path className="fill-current" d="M500.2,94.7L0,0v100h1000V0L500.2,94.7z" />

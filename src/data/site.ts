@@ -4,14 +4,17 @@ export const SITE = {
   headline: 'MÁRCIO LEITE — VEM SE APAIXONAR!',
   subheadline:
     'O Arrocha Romântico que arrasta multidões nos maiores palcos, micaretas e festas da Bahia.',
-  base: 'Santo Estevão · Bahia · Desde 2007',
+  base: 'Feira de Santana · Bahia · Desde 2007',
   whatsapp: '5575981136855',
+  whatsapps: [
+    { display: '(75) 98113-6855', number: '5575981136855' },
+    { display: '(75) 99146-2168', number: '5575991462168' },
+  ],
   phones: ['(75) 98113-6855', '(75) 99146-2168', '(75) 9840-7622'],
   emails: [
     'marcioleitesimplesmenteromantico@hotmail.com',
     'myllalleite@hotmail.com',
   ],
-  address: 'Av. Plínio da Silva Gomes, 443 — Centro, Santo Estevão - BA',
   company: 'Márcio de Oliveira Leite MEI',
   socials: {
     instagram: 'https://www.instagram.com/marcioleiteofficial/',
@@ -131,6 +134,13 @@ export const TRAJETORIA: TrajetoriaItem[] = [
     image: 'images/trajetoria/micareta-2023.jpg',
   },
   {
+    year: '2026',
+    title: '18ª Festa do Milho',
+    desc: 'Atração confirmada na 18ª Festa do Milho e Feira da Agricultura Familiar, em Santo Estevão-BA, de 24 a 26 de julho de 2026 — realização SINTRAFSE, com apoio da Prefeitura Municipal.',
+    image: 'images/trajetoria/festa-do-milho-2026.jpg',
+    highlight: 'Atração confirmada em Santo Estevão-BA.',
+  },
+  {
     year: 'Hoje',
     title: 'Carreira solo consolidada',
     desc: 'Gravação do Audiovisual no Hangar 5.0 com convidados especiais e agenda aberta para todo o Brasil.',
@@ -179,9 +189,31 @@ export const ALBUMS = [
 export const GALLERY = [
   { src: 'images/extracted/img-01.jpg', title: 'Show ao vivo', cat: 'Shows' },
   { src: 'images/gallery/show-01.jpg', title: 'Quinta na Praça · TV Subaé', cat: 'Público' },
-  { src: 'images/gallery/show-02.jpg', title: 'Praça lotada', cat: 'Público' },
+  { src: 'images/gallery/shows-novos/show-05.jpg', title: 'Microfone e gesto', cat: 'Shows' },
   { src: 'images/about/retrato.jpg', title: 'Retrato · Vem se Apaixonar', cat: 'Estúdio' },
   { src: 'images/extracted/img-12.jpg', title: 'Hangar 5.0', cat: 'Bastidores' },
+  { src: 'images/gallery/shows-novos/show-04.jpg', title: 'Ao vivo', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-01.jpg', title: 'Equipe no evento', cat: 'Bastidores' },
+  { src: 'images/gallery/shows-novos/show-07.jpg', title: 'Momento de show', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-08.jpg', title: 'Palco iluminado', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-09.jpg', title: 'Estrutura de palco', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-12.jpg', title: 'Close no artista', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-13.jpg', title: 'Visão ampla do show', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-14.jpg', title: 'Interação', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-16.jpg', title: 'No ritmo', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-18.jpg', title: 'Presença de palco', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-19.jpg', title: 'Show completo', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-21.jpg', title: 'Produção e equipe', cat: 'Bastidores' },
+  { src: 'images/gallery/shows-novos/show-23.jpg', title: 'Palco com LED', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-24.jpg', title: 'Bastidores · TV', cat: 'Bastidores' },
+  { src: 'images/gallery/shows-novos/show-25.jpg', title: 'Micareta Feira 2025', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-26.jpg', title: 'Churrasco Bela Vista', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-27.jpg', title: 'Micareta da Paz', cat: 'Público' },
+  { src: 'images/gallery/shows-novos/show-28.jpg', title: 'Palco e público', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-29.jpg', title: 'Encontro e parceria', cat: 'Bastidores' },
+  { src: 'images/gallery/shows-novos/show-30.jpg', title: 'Banda no palco', cat: 'Shows' },
+  { src: 'images/gallery/shows-novos/show-31.jpg', title: 'Retrato promocional', cat: 'Estúdio' },
+  { src: 'images/gallery/shows-novos/show-32.jpg', title: 'Bar · bastidores', cat: 'Bastidores' },
 ];
 
 export const PRESS = [

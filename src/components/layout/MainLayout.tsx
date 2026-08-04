@@ -346,16 +346,29 @@ export function MainLayout() {
           </div>
           <div>
             <h4 className="font-display text-xl tracking-wider mb-4 text-accent-light">Comercial</h4>
-            <p className="text-sm text-white/65 mb-1">{SITE.phones[0]}</p>
-            <p className="text-sm text-white/65 mb-3 break-all">{SITE.emails[0]}</p>
-            <p className="text-xs text-white/40">{SITE.address}</p>
+            {SITE.whatsapps.map((wa) => (
+              <p key={wa.number} className="text-sm text-white/65 mb-1">
+                {wa.display}
+              </p>
+            ))}
+            <p className="text-sm text-white/65 break-all">{SITE.emails[0]}</p>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 md:px-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/40">
           <p>
             © {new Date().getFullYear()} {SITE.name}. Todos os direitos reservados.
           </p>
-          <p>{SITE.company}</p>
+          <p>
+            Empresa desenvolvedora:{' '}
+            <a
+              href="https://prestei.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white/55 hover:text-accent-light transition-colors underline underline-offset-2"
+            >
+              Prestei
+            </a>
+          </p>
         </div>
       </motion.footer>
 
